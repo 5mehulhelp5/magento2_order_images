@@ -1,0 +1,15 @@
+{
+    "name": "magewings-dev/magento2_order_images",
+    "description": "Magento 2 module to display product images on order view pages for both customers and admins. Improve user experience and order clarity with visual product references.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "require": {
+        "magento/module-sales": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "MageWings\\OrderImages\\": "app/code/MageWings/OrderImages/"
+        }
+    }
+}
