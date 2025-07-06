@@ -1,0 +1,16 @@
+<?php
+/**
+ * @author MageWings
+ */
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Sales\Block\Order\Items $block */
+
+$item = $block->getItem();
+$viewModel = $block->getData("view_model");
+$imageUrl = $viewModel->getImageUrl($item);
+?>
+<img 
+    src="<?= $escaper->escapeUrl($imageUrl) ?>" 
+    alt="<?= $escaper->escapeHtml(__("No Image"))?>" 
+    class="mw-order-item-image" 
+/>
