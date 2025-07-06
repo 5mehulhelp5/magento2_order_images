@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author MageWings
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+<body>
+    <referenceBlock name="order_items">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="product-image" xsi:type="string" translate="true">Product Image</item>
+            </argument>
+        </arguments>
+    </referenceBlock>
+    <referenceBlock name="default_order_items_renderer">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="product-image" xsi:type="string" translate="false">col-product-image</item>
+            </argument>
+        </arguments>
+    </referenceBlock>
+</body>
+</page>

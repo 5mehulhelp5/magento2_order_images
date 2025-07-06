@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author MageWings
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="additional.product.info">
+            <action method="setTemplate" ifconfig="order_images/general/enable">
+                <argument name="template" xsi:type="string">MageWings_OrderImages::additional_product_info.phtml</argument>
+            </action>
+            <arguments>
+                <argument name="view_model" xsi:type="object">MageWings\OrderImages\ViewModel\OrderItem</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
