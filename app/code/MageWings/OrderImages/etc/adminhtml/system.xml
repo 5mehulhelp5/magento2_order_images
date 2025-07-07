@@ -17,6 +17,10 @@
                     <label>Enable Module</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+
+                <field id="info" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>MageWings\OrderImages\Block\Adminhtml\System\Config\Info</frontend_model>
+                </field>
             </group>
         </section>
     </system>

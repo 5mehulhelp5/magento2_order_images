@@ -22,7 +22,7 @@ Use Composer or manual installation:
 
 ### Option 1: Composer
 ```bash
-composer require magewings/order-images
+composer require magewings-dev/magento2_order_images
 bin/magento module:enable MageWings_OrderImages
 bin/magento setup:upgrade
 bin/magento cache:flush
