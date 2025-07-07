@@ -15,6 +15,13 @@ class DefaultRenderer extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Re
     protected $imageHelper;
 
     /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
+    protected const XML_PATH_IMAGE_ENABLED = 'order_images/general/enable';
+
+    /**
      * DefaultRenderer constructor.
      *
      * @param \Magento\Backend\Block\Template\Context $context
@@ -24,6 +31,7 @@ class DefaultRenderer extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Re
      * @param \Magento\GiftMessage\Helper\Message $messageHelper
      * @param \Magento\Checkout\Helper\Data $checkoutHelper
      * @param \Magento\Catalog\Helper\Image $imageHelper
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param array $data
      */
     public function __construct(
@@ -34,6 +42,7 @@ class DefaultRenderer extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Re
         \Magento\GiftMessage\Helper\Message $messageHelper,
         \Magento\Checkout\Helper\Data $checkoutHelper,
         \Magento\Catalog\Helper\Image $imageHelper,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         array $data = []
     ){
         parent::__construct(
@@ -46,6 +55,7 @@ class DefaultRenderer extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Re
             $data
         );
         $this->imageHelper = $imageHelper;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -60,6 +70,13 @@ class DefaultRenderer extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Re
      */
     public function getColumnHtml(\Magento\Framework\DataObject $item, $column, $field = null)
     {
+        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $isEnabled = $this->scopeConfig->getValue(self::XML_PATH_IMAGE_ENABLED, $storeScope);
+
+        if (!$isEnabled) {
+            return parent::getColumnHtml($item, $column, $field);
+        }
+
         $html = '';
         switch ($column) {
             case 'product':
@@ -90,8 +107,8 @@ class DefaultRenderer extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Re
                 $product = $item->getProduct();
                 if ($product) {
                     $imageUrl = $this->imageHelper->init($product, 'thumbnail',['type'=>'thumbnail'])
-                        ->keepAspectRatio(true)->resize('100', '100')->getUrl();
-                    $html = '<img src="' . $imageUrl . '" alt="' . __('Product Image') . '" style="max-width: 100px; max-height: 100px;"/>';
+                        ->keepAspectRatio(true)->resize('80', '80')->getUrl();
+                    $html = '<img src="' . $imageUrl . '" alt="' . __('Product Image') . '" style="max-width: 80px; max-height: 80px;"/>';
                 } else {
                     $html = __('No Image');
                 }

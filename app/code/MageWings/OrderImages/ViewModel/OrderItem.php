@@ -40,7 +40,7 @@ class OrderItem implements ArgumentInterface
         if ($item && $item->getProductId()) {
             $product = $item->getProduct();
             $this->imageUrl = $this->imageHelper->init($product, 'thumbnail',['type'=>'thumbnail'])
-                ->keepAspectRatio(true)->resize('100', '100')->getUrl();
+                ->keepAspectRatio(true)->resize('80', '80')->getUrl();
         }
         return $this->imageUrl;
     }
